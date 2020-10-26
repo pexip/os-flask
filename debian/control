@@ -1,0 +1,77 @@
+Source: flask
+Section: python
+Priority: optional
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders:
+ Ondřej Nový <onovy@debian.org>,
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python (>= 2.20160609~),
+ python3-all,
+ python3-blinker,
+ python3-click (>= 5.1),
+ python3-itsdangerous (>= 0.24),
+ python3-jinja2 (>= 2.10),
+ python3-pallets-sphinx-themes,
+ python3-pytest (>= 3),
+ python3-setuptools,
+ python3-sphinx,
+ python3-sphinx-issues,
+ python3-werkzeug (>= 0.15),
+Standards-Version: 4.5.0
+Vcs-Git: https://salsa.debian.org/python-team/packages/flask.git
+Vcs-Browser: https://salsa.debian.org/python-team/packages/flask
+Homepage: http://flask.pocoo.org/
+Testsuite: autopkgtest-pkg-python
+Rules-Requires-Root: no
+
+Package: python3-flask
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Recommends:
+ python3-blinker,
+ python3-pkg-resources,
+Suggests:
+ python-flask-doc,
+Description: micro web framework based on Werkzeug and Jinja2 - Python 3.x
+ Flask is a micro web framework for Python based on Werkzeug, Jinja 2 and good
+ intentions. A minimal Flask application looks like that:
+ .
+   from flask import Flask
+   app = Flask(__name__)
+ .
+   @app.route("/")
+   def hello():
+       return "Hello World!"
+ .
+   if __name__ == '__main__':
+       app.run()
+ .
+ This package contains the Python 3.x module.
+
+Package: python-flask-doc
+Section: doc
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${sphinxdoc:Depends},
+Recommends:
+ python3-flask,
+Multi-Arch: foreign
+Description: micro web framework based on Werkzeug and Jinja2 - documentation
+ Flask is a micro web framework for Python based on Werkzeug, Jinja 2 and good
+ intentions. A minimal Flask application looks like that:
+ .
+   from flask import Flask
+   app = Flask(__name__)
+ .
+   @app.route("/")
+   def hello():
+       return "Hello World!"
+ .
+   if __name__ == '__main__':
+       app.run()
+ .
+ This package contains the documentation for Flask.

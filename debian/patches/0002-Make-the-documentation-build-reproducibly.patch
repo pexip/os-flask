@@ -1,0 +1,35 @@
+From 3ddf7fd2c2b4108a55213c791bd80981bd1f90f5 Mon Sep 17 00:00:00 2001
+From: Chris Lamb <lamby@debian.org>
+Date: Mon, 28 Oct 2019 09:13:37 +0000
+Subject: [PATCH] Make the documentation build reproducibly
+Origin: https://github.com/pallets/flask/pull/3408/commits/3ddf7fd2c2b4108a55213c791bd80981bd1f90f5
+
+Whilst working on the Reproducible Builds effort [0] we noticed that
+flask could not be built reproducibly.
+
+This is because it includes an absolute build directory in the
+documentation as the "json_module" attribute points to a Python class/
+module which has a string representation including its path.
+
+This commit skips this (inherited) member from the documentation.
+
+(This was originally filed in Debian as #943674 [1].)
+
+ [0] https://reproducible-builds.org/
+ [1] https://bugs.debian.org/943674
+---
+ docs/api.rst | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/docs/api.rst b/docs/api.rst
+index 7e278fc61..41a6f355c 100644
+--- a/docs/api.rst
++++ b/docs/api.rst
+@@ -31,6 +31,7 @@ Incoming Request Data
+ .. autoclass:: Request
+    :members:
+    :inherited-members:
++   :exclude-members: json_module
+ 
+    .. attribute:: environ
+ 
